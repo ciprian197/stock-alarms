@@ -1,0 +1,14 @@
+version: '3'
+
+services:
+  database:
+    image: mysql:8.0.20
+    container_name: stockalarms-database
+    environment:
+      MYSQL_DATABASE: stockalarms
+      MYSQL_USER: stockalarmsUser
+      MYSQL_PASSWORD: stockalarmsPassword
+      MYSQL_ROOT_PASSWORD: rootPassword
+    ports:
+      - '3307:3306'
+    command: --default-authentication-plugin=mysql_native_password --character-set-server=utf8mb4
