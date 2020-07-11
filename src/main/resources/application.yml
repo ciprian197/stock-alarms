@@ -22,5 +22,17 @@ spring:
         hbm2ddl.import_files_sql_extractor: org.hibernate.tool.hbm2ddl.MultipleLinesSqlCommandExtractor
     show-sql: false
 
+keycloak:
+  auth-server-url: http://localhost:8081/auth
+  realm: stock-alarms
+  resource: stock-alarms-be
+  public-client: true
+
 logging:
   level.root: info
+
+stock-alarms:
+  keycloak:
+    credentials:
+      client-id: realm-management
+      secret: 47fe28fa-ea8c-4663-b497-cf6d710c10d9

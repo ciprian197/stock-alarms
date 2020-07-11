@@ -1,5 +1,9 @@
 version: '3'
 
+networks:
+  keycloak-network:
+    driver: bridge
+
 services:
   database:
     image: mysql:8.0.20
@@ -12,3 +16,41 @@ services:
     ports:
       - '3307:3306'
     command: --default-authentication-plugin=mysql_native_password --character-set-server=utf8mb4
+
+  mysql-keycloak:
+    networks:
+      - keycloak-network
+    image: mysql:8.0.20
+    container_name: stock-alarms-keycloak-database
+    environment:
+      MYSQL_DATABASE: keycloak_database
+      MYSQL_USER: keycloakUser
+      MYSQL_PASSWORD: keycloakPassword
+      MYSQL_ROOT_PASSWORD: rootPasswordocker d
+    ports:
+      - '3308:3306'
+    command: --character-set-server=utf8mb4 --default-authentication-plugin=mysql_native_password
+
+  keycloak:
+    networks:
+      - keycloak-network
+    image: jboss/keycloak:9.0.3
+    container_name: stock-alarms-keycloak
+    volumes:
+      - ./config/keycloak:/tmp
+    environment:
+      KEYCLOAK_USER: admin
+      KEYCLOAK_PASSWORD: admin
+      KEYCLOAK_IMPORT: /tmp/stock-alarms-realm.json
+      DB_VENDOR: MYSQL
+      DB_ADDR: stock-alarms-keycloak-database
+      DB_PORT: 3306
+      DB_DATABASE: keycloak_database
+      DB_USER: keycloakUser
+      DB_PASSWORD: keycloakPassword
+      JDBC_PARAMS: 'useSSL=false'
+    ports:
+      - '8081:8080'
+    depends_on:
+      - mysql-keycloak
+
