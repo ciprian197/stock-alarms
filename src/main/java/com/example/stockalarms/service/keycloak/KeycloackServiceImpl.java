@@ -9,17 +9,16 @@ import org.keycloak.admin.client.KeycloakBuilder;
 import org.keycloak.representations.idm.CredentialRepresentation;
 import org.keycloak.representations.idm.UserRepresentation;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.stereotype.Service;
+import org.springframework.stereotype.Component;
 
 import javax.ws.rs.WebApplicationException;
 import javax.ws.rs.core.Response;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.UUID;
 
 @Slf4j
-@Service
-public class KeycloackServiceImpl implements KeycloackService {
+@Component
+class KeycloackServiceImpl implements KeycloackService {
 
     private final Keycloak keycloakClient;
 
@@ -44,7 +43,7 @@ public class KeycloackServiceImpl implements KeycloackService {
     @Override
     public String createUser(final KeycloakUserDto keycloakUserDto) {
         final CredentialRepresentation passwordCred =
-                createCredentialRepresentation(UUID.randomUUID().toString());
+                createCredentialRepresentation(keycloakUserDto.getPassword());
 
         final UserRepresentation user = new UserRepresentation();
         user.setUsername(keycloakUserDto.getEmail());

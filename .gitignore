@@ -38,5 +38,5 @@ out/
 build/
 !gradle/wrapper/gradle-wrapper.jar
 
-config/
+config/keycloak
 !config/keycloak/stock-alarms-realm.json

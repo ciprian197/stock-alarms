@@ -18,6 +18,7 @@ public class UserServiceImpl {
 
     private final UserRepository userRepository;
     private final KeycloackService keycloackService;
+    private final AuthorizationServiceImpl authorizationService;
     private final UserMapper userMapper;
 
     @Transactional
@@ -29,6 +30,11 @@ public class UserServiceImpl {
         user.setKeycloakId(keycloakId);
         final User savedUser = userRepository.save(user);
         return savedUser.getId();
+    }
+
+    public User getCurrentUser() {
+        return userRepository.findByKeycloakId(authorizationService.getAuthenticatedUserKeycloakId())
+                .orElseThrow(() -> new RuntimeException("User not found!"));
     }
 
 }

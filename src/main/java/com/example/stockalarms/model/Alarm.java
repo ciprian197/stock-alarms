@@ -1,9 +1,9 @@
 package com.example.stockalarms.model;
 
+
 import lombok.*;
 
 import javax.persistence.*;
-import java.util.List;
 import java.util.UUID;
 
 @Getter
@@ -12,23 +12,20 @@ import java.util.UUID;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-public class User {
+public class Alarm {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(columnDefinition = "BINARY(16)")
     private UUID id;
 
-    @Column(nullable = false)
-    private String email;
+    private String stockId;
 
-    private String firstName;
+    private double currentPrice;
 
-    private String lastName;
+    private int percentage;
 
-    private String keycloakId;
-
-    @OneToMany(mappedBy = "user")
-    private List<Alarm> alarms;
+    @ManyToOne(fetch = FetchType.LAZY)
+    private User user;
 
 }
