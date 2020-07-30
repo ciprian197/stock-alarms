@@ -6,15 +6,15 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.List;
+
 @Data
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class QuoteDto {
+public class SearchEndpointResponse {
 
-    @JsonProperty("01. symbol")
-    private String symbol;
-    @JsonProperty("05. price")
-    private double price;
+    @JsonProperty("bestMatches")
+    private List<StockDto> results;
 
 }

@@ -1,6 +1,6 @@
 package com.example.stockalarms.service.stock;
 
-import com.example.stockalarms.client.service.alphavantage.AlphavantageService;
+import com.example.stockalarms.client.service.alphavantage.AlphaVantageService;
 import com.example.stockalarms.dto.StockDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -12,7 +12,7 @@ import java.util.stream.Collectors;
 @Service
 class StockServiceImpl implements StockService {
 
-    private final AlphavantageService alphavantageService;
+    private final AlphaVantageService alphavantageService;
 
     @Override
     public List<StockDto> getStocks(final String keyword) {

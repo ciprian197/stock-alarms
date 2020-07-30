@@ -5,7 +5,7 @@ import com.example.stockalarms.client.dto.StockDto;
 
 import java.util.List;
 
-public interface AlphavantageService {
+public interface AlphaVantageService {
 
     List<StockDto> getStocks(String keyword);
 

@@ -32,12 +32,12 @@ logging:
   level.root: info
   org.hibernate.SQL: DEBUG
   org.hibernate.type.descriptor.sql.BasicBinder: TRACE
+  level.reactor.netty.http.client.HttpClient: DEBUG
 
 stock-alarms:
   keycloak:
     credentials:
       client-id: realm-management
       secret: 47fe28fa-ea8c-4663-b497-cf6d710c10d9
-  alphavantage:
-    api-key: stock-alarms
-    time-out: 10
+  alpha-vantage:
+    api-key: randomKey

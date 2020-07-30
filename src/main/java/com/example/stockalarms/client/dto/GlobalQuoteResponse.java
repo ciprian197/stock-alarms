@@ -10,11 +10,9 @@ import lombok.NoArgsConstructor;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class QuoteDto {
+public class GlobalQuoteResponse {
 
-    @JsonProperty("01. symbol")
-    private String symbol;
-    @JsonProperty("05. price")
-    private double price;
+    @JsonProperty("Global Quote")
+    private QuoteDto quote;
 
 }
