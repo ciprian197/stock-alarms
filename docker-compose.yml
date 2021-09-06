@@ -26,7 +26,7 @@ services:
       MYSQL_DATABASE: keycloak_database
       MYSQL_USER: keycloakUser
       MYSQL_PASSWORD: keycloakPassword
-      MYSQL_ROOT_PASSWORD: rootPasswordocker d
+      MYSQL_ROOT_PASSWORD: rootPasswordocker
     ports:
       - '3308:3306'
     command: --character-set-server=utf8mb4 --default-authentication-plugin=mysql_native_password
@@ -34,14 +34,14 @@ services:
   keycloak:
     networks:
       - keycloak-network
-    image: jboss/keycloak:9.0.3
+    image: jboss/keycloak:15.0.2
     container_name: stock-alarms-keycloak
-    volumes:
-      - ./config/keycloak:/tmp
+#    volumes:
+#      - ./config/keycloak:/tmp
     environment:
       KEYCLOAK_USER: admin
       KEYCLOAK_PASSWORD: admin
-      KEYCLOAK_IMPORT: /tmp/stock-alarms-realm.json
+#      KEYCLOAK_IMPORT: /tmp/stock-alarms-realm.json
       DB_VENDOR: MYSQL
       DB_ADDR: stock-alarms-keycloak-database
       DB_PORT: 3306
